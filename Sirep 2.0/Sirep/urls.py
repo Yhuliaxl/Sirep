@@ -19,8 +19,8 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
 #INVENTARIO
-#from apps.bodegas.bodega.api.router import bodegaRouter
-#from apps.bodegas.punto_venta.api.router import puntoVentaRouter
+from apps.bodegas.bodega.api.router import bodegaRouter
+from apps.bodegas.punto_venta.api.router import puntoVentaRouter
 #from apps.bodegas.unidades_productivas.api.router import unidadProductivaRouter
 #
 ##EMPRESA
@@ -40,14 +40,14 @@ from apps.inventario.inventario.api.router import inventarioRouter
 
 #ROUTERS
 router = DefaultRouter()
-#routerBodega = DefaultRouter()
+routerBodega = DefaultRouter()
 #routerEempresa = DefaultRouter()
 routerInventario = DefaultRouter()
 #routerMovimiento = DefaultRouter()
 #
 ##ROUTERS BODEGA
-#routerBodega.registry.extend(bodegaRouter.registry)
-#routerBodega.registry.extend(puntoVentaRouter.registry)
+routerBodega.registry.extend(bodegaRouter.registry)
+routerBodega.registry.extend(puntoVentaRouter.registry)
 #routerBodega.registry.extend(unidadProductivaRouter.registry)
 #
 ##ROUTERS EMPRESA
@@ -68,7 +68,7 @@ routerInventario.registry.extend(inventarioRouter.registry)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-    #path('bodega/', include(routerBodega.urls)),
+    path('bodega/', include(routerBodega.urls)),
     #path('empresa/', include(routerEempresa.urls)),
     path('inventario/', include(routerInventario.urls)),
     #path('movimiento/', include(routerMovimiento.urls)),
