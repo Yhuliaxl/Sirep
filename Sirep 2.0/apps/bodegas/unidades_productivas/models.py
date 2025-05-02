@@ -1,3 +1,67 @@
 from django.db import models
 
 # Create your models here.
+class unidadProductiva(models.Model):
+    CENTRO = 'Centro'
+    YAMBORO = 'Yamboro'
+    SEDE_CHOICES = [
+        (CENTRO, 'Centro'),
+        (YAMBORO, 'Yamboro'),
+    ]
+
+    ACTIVO = 'Activo'
+    INACTIVO = 'Inactivo'
+    ESTADO_CHOICES = [
+        (ACTIVO, 'Activo'),
+        (INACTIVO, 'Inactivo'),
+    ]
+
+    codigo_up = models.AutoField(
+        primary_key=True,
+        verbose_name="Código único de la unidad productiva"
+    )
+    nombre = models.CharField(
+        max_length=40,
+        verbose_name="Nombre de la unidad productiva"
+    )
+    logo = models.CharField(
+        max_length=80,
+        null=True,
+        blank=True,
+        verbose_name="Logo de la unidad productiva"
+    )
+    descripcion = models.CharField(
+        max_length=100,
+        null=True,
+        blank=True,
+        verbose_name="Descripción corta de la unidad productiva"
+    )
+    sede = models.CharField(
+        max_length=10,
+        choices=SEDE_CHOICES,
+        null=True,
+        blank=True,
+        verbose_name="Sede"
+    )
+    estado = models.CharField(
+        max_length=8,
+        choices=ESTADO_CHOICES,
+        null=True,
+        blank=True,
+        verbose_name="Estado"
+    )
+    entrega_producto = models.BooleanField(
+        verbose_name="Entrega de producto",
+        help_text="True = entregado; False = reservado"
+    )
+    #fk_persona = models.BigIntegerField(
+    #    verbose_name="Persona encargada"
+    #)
+
+    class Meta:
+        db_table = 'unidades_productivas'
+        verbose_name = 'Unidad Productiva'
+        verbose_name_plural = 'Unidades Productivas'
+
+    def __str__(self):
+        return f'{self.nombre} (Código {self.codigo_up})'
