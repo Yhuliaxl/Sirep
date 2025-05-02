@@ -21,7 +21,7 @@ from rest_framework.routers import DefaultRouter
 #INVENTARIO
 from apps.bodegas.bodega.api.router import bodegaRouter
 from apps.bodegas.punto_venta.api.router import puntoVentaRouter
-#from apps.bodegas.unidades_productivas.api.router import unidadProductivaRouter
+from apps.bodegas.unidades_productivas.api.router import unidadProductivaRouter
 #
 ##EMPRESA
 #from apps.empresa.cargo.api.router import cargoRouter
@@ -48,7 +48,7 @@ routerInventario = DefaultRouter()
 ##ROUTERS BODEGA
 routerBodega.registry.extend(bodegaRouter.registry)
 routerBodega.registry.extend(puntoVentaRouter.registry)
-#routerBodega.registry.extend(unidadProductivaRouter.registry)
+routerBodega.registry.extend(unidadProductivaRouter.registry)
 #
 ##ROUTERS EMPRESA
 #routerEempresa.registry.extend(cargoRouter.registry)
