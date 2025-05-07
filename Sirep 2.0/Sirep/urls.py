@@ -36,7 +36,7 @@ from apps.inventario.productos.api.router import productosRouter
 #
 ##MOVIMIENTO
 from apps.movimiento.detalle.api.router import detalleRouter
-#from apps.movimiento.movimientos.api.router import movimientosRouter
+from apps.movimiento.movimientos.api.router import movimientosRouter
 
 #ROUTERS
 router = DefaultRouter()
@@ -63,7 +63,7 @@ routerInventario.registry.extend(productosRouter.registry)
 #
 ##ROUTERS MOVIMIENTOS
 routerMovimiento.registry.extend(detalleRouter.registry)
-#routerMovimiento.registry.extend(movimientosRouter.registry)
+routerMovimiento.registry.extend(movimientosRouter.registry)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
