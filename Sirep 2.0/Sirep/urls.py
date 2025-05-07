@@ -24,8 +24,8 @@ from apps.bodegas.punto_venta.api.router import puntoVentaRouter
 from apps.bodegas.unidades_productivas.api.router import unidadProductivaRouter
 
 ##EMPRESA
-#from apps.empresa.cargo.api.router import cargoRouter
-#from apps.empresa.personas.api.router import personaRouter
+from apps.empresa.cargo.api.router import cargoRouter
+from apps.empresa.personas.api.router import personaRouter
 #from apps.empresa.sena_empresa.api.router import senaEmpresaRouter
 #
 ##INVENTARIO
@@ -41,7 +41,7 @@ from apps.inventario.productos.api.router import productosRouter
 #ROUTERS
 router = DefaultRouter()
 routerBodega = DefaultRouter()
-#routerEempresa = DefaultRouter()
+routerEempresa = DefaultRouter()
 routerInventario = DefaultRouter()
 #routerMovimiento = DefaultRouter()
 #
@@ -51,8 +51,8 @@ routerBodega.registry.extend(puntoVentaRouter.registry)
 routerBodega.registry.extend(unidadProductivaRouter.registry)
 #
 ##ROUTERS EMPRESA
-#routerEempresa.registry.extend(cargoRouter.registry)
-#routerEempresa.registry.extend(personaRouter.registry)
+routerEempresa.registry.extend(cargoRouter.registry)
+routerEempresa.registry.extend(personaRouter.registry)
 #routerEempresa.registry.extend(senaEmpresaRouter.registry)
 #
 ##ROUTERS INVENTARIO
@@ -69,7 +69,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('bodega/', include(routerBodega.urls)),
-    #path('empresa/', include(routerEempresa.urls)),
+    path('empresa/', include(routerEempresa.urls)),
     path('inventario/', include(routerInventario.urls)),
     #path('movimiento/', include(routerMovimiento.urls)),
 ]
