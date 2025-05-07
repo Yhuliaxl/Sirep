@@ -25,7 +25,7 @@ from apps.bodegas.unidades_productivas.api.router import unidadProductivaRouter
 
 ##EMPRESA
 from apps.empresa.cargo.api.router import cargoRouter
-from apps.empresa.personas.api.router import personaRouter
+#from apps.empresa.personas.api.router import personaRouter
 #from apps.empresa.sena_empresa.api.router import senaEmpresaRouter
 #
 ##INVENTARIO
@@ -35,15 +35,15 @@ from apps.inventario.produccion.api.router import produccionRouter
 from apps.inventario.productos.api.router import productosRouter
 #
 ##MOVIMIENTO
+from apps.movimiento.detalle.api.router import detalleRouter
 #from apps.movimiento.movimientos.api.router import movimientosRouter
-#from apps.movimiento.detalle.api.router import detalleRouter
 
 #ROUTERS
 router = DefaultRouter()
 routerBodega = DefaultRouter()
 routerEempresa = DefaultRouter()
 routerInventario = DefaultRouter()
-#routerMovimiento = DefaultRouter()
+routerMovimiento = DefaultRouter()
 #
 ##ROUTERS BODEGA
 routerBodega.registry.extend(bodegaRouter.registry)
@@ -52,7 +52,7 @@ routerBodega.registry.extend(unidadProductivaRouter.registry)
 #
 ##ROUTERS EMPRESA
 routerEempresa.registry.extend(cargoRouter.registry)
-routerEempresa.registry.extend(personaRouter.registry)
+#routerEempresa.registry.extend(personaRouter.registry)
 #routerEempresa.registry.extend(senaEmpresaRouter.registry)
 #
 ##ROUTERS INVENTARIO
@@ -62,8 +62,8 @@ routerInventario.registry.extend(produccionRouter.registry)
 routerInventario.registry.extend(productosRouter.registry)
 #
 ##ROUTERS MOVIMIENTOS
+routerMovimiento.registry.extend(detalleRouter.registry)
 #routerMovimiento.registry.extend(movimientosRouter.registry)
-#routerMovimiento.registry.extend(detalleRouter.registry)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -71,5 +71,5 @@ urlpatterns = [
     path('bodega/', include(routerBodega.urls)),
     path('empresa/', include(routerEempresa.urls)),
     path('inventario/', include(routerInventario.urls)),
-    #path('movimiento/', include(routerMovimiento.urls)),
+    path('movimiento/', include(routerMovimiento.urls)),
 ]
