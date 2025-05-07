@@ -22,7 +22,7 @@ from rest_framework.routers import DefaultRouter
 from apps.bodegas.bodega.api.router import bodegaRouter
 from apps.bodegas.punto_venta.api.router import puntoVentaRouter
 from apps.bodegas.unidades_productivas.api.router import unidadProductivaRouter
-#
+
 ##EMPRESA
 #from apps.empresa.cargo.api.router import cargoRouter
 #from apps.empresa.personas.api.router import personaRouter
@@ -30,9 +30,9 @@ from apps.bodegas.unidades_productivas.api.router import unidadProductivaRouter
 #
 ##INVENTARIO
 from apps.inventario.inventario.api.router import inventarioRouter
-#from apps.inventario.precios.api.router import preciosRouter
-#from apps.inventario.produccion.api.router import produccionRouter
-#from apps.inventario.productos.api.router import productosRouter
+from apps.inventario.precios.api.router import preciosRouter
+from apps.inventario.produccion.api.router import produccionRouter
+from apps.inventario.productos.api.router import productosRouter
 #
 ##MOVIMIENTO
 #from apps.movimiento.movimientos.api.router import movimientosRouter
@@ -57,9 +57,9 @@ routerBodega.registry.extend(unidadProductivaRouter.registry)
 #
 ##ROUTERS INVENTARIO
 routerInventario.registry.extend(inventarioRouter.registry)
-#routerInventario.registry.extend(preciosRouter.registry)
-#routerInventario.registry.extend(produccionRouter.registry)
-#routerInventario.registry.extend(productosRouter.registry)
+routerInventario.registry.extend(preciosRouter.registry)
+routerInventario.registry.extend(produccionRouter.registry)
+routerInventario.registry.extend(productosRouter.registry)
 #
 ##ROUTERS MOVIMIENTOS
 #routerMovimiento.registry.extend(movimientosRouter.registry)
