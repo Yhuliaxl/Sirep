@@ -1,15 +1,27 @@
 from django.db import models
 
-class SenaEmpresa(models.Model):
-    id_sena = models.AutoField(primary_key=True)
-    nombre = models.CharField(max_length=45, blank=True, null=True)
-    num_factura = models.IntegerField(blank=True, null=True)
-
-    def __str__(self):
-        return self.nombre or "Sin nombre"
+# Create your models here.
+class senaEmpresa(models.Model):
+    id_sena = models.AutoField(
+        primary_key=True,
+        verbose_name="Identificador único de SENA Empresa"
+    )
+    nombre = models.CharField(
+        max_length=45,
+        null=True,
+        blank=True,
+        verbose_name="Nombre de la empresa"
+    )
+    num_factura = models.IntegerField(
+        null=True,
+        blank=True,
+        verbose_name="Número consecutivo de facturación"
+    )
 
     class Meta:
-        verbose_name = "Sena Empresa"
-        verbose_name_plural = "Sena Empresas"
-        
-# Create your models here.
+        db_table = 'sena_empresa'
+        verbose_name = 'SENA Empresa'
+        verbose_name_plural = 'SENA Empresas'
+
+    def __str__(self):
+        return self.nombre or f'Empresa {self.id_sena}'

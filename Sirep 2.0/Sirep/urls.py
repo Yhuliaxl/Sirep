@@ -25,8 +25,9 @@ from apps.bodegas.unidades_productivas.api.router import unidadProductivaRouter
 
 ##EMPRESA
 from apps.empresa.cargo.api.router import cargoRouter
-#from apps.empresa.personas.api.router import personaRouter
-#from apps.empresa.sena_empresa.api.router import senaEmpresaRouter
+
+from apps.empresa.personas.api.router import personaRouter
+from apps.empresa.sena_empresa.api.router import senaEmpresaRouter
 #
 ##INVENTARIO
 from apps.inventario.inventario.api.router import inventarioRouter
@@ -52,8 +53,8 @@ routerBodega.registry.extend(unidadProductivaRouter.registry)
 #
 ##ROUTERS EMPRESA
 routerEempresa.registry.extend(cargoRouter.registry)
-#routerEempresa.registry.extend(personaRouter.registry)
-#routerEempresa.registry.extend(senaEmpresaRouter.registry)
+routerEempresa.registry.extend(personaRouter.registry)
+routerEempresa.registry.extend(senaEmpresaRouter.registry)
 #
 ##ROUTERS INVENTARIO
 routerInventario.registry.extend(inventarioRouter.registry)
