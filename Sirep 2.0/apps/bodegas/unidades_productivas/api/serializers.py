@@ -12,6 +12,6 @@ class unidadProductivaSerializer(serializers.ModelSerializer):
             'sede',
             'estado',
             'entrega_producto',
-            #'fk_persona'
+            'fk_persona'
         ]
         read_only_fields = ['codigo_up']

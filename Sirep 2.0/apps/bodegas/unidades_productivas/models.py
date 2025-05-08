@@ -1,6 +1,7 @@
+# apps/inventario/unidades_productivas/models.py
 from django.db import models
+from apps.empresa.personas.models import persona  # Ajusta la ruta según la ubicación real del modelo Persona
 
-# Create your models here.
 class unidadProductiva(models.Model):
     CENTRO = 'Centro'
     YAMBORO = 'Yamboro'
@@ -54,9 +55,13 @@ class unidadProductiva(models.Model):
         verbose_name="Entrega de producto",
         help_text="True = entregado; False = reservado"
     )
-    #fk_persona = models.BigIntegerField(
-    #    verbose_name="Persona encargada"
-    #)
+    fk_persona = models.ForeignKey(
+        persona,
+        on_delete=models.PROTECT,
+        verbose_name="Persona encargada",
+        blank=True,  # Permitimos que sea opcional
+        null=True
+    )
 
     class Meta:
         db_table = 'unidades_productivas'
