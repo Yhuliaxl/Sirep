@@ -1,4 +1,5 @@
 from django.db import models
+from apps.empresa.personas.models import persona
 
 class PuntoVenta(models.Model):
     CENTRO = 'Centro'
@@ -33,9 +34,13 @@ class PuntoVenta(models.Model):
         blank=True,
         verbose_name="Nombre del punto de venta"
     )
-    #fk_persona = models.BigIntegerField(
-    #    verbose_name="Persona encargada"
-    #)
+    fk_persona = models.ForeignKey(
+        persona,
+        on_delete=models.PROTECT,
+        verbose_name="Persona encargada",
+        blank=True,  # Permitimos que sea opcional
+        null=True
+    )
     estado = models.CharField(
         max_length=8,
         choices=ESTADO_CHOICES,

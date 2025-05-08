@@ -9,7 +9,7 @@ class PuntoVentaSerializer(serializers.ModelSerializer):
             'sede',
             'direccion',
             'nombre',
-            #'Fk_persona',
+            'fk_persona',
             'estado'
         ]
         read_only_fields = ['Id_punto_vent']
