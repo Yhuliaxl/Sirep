@@ -1,6 +1,7 @@
+# apps/empresa/personas/models.py
 from django.db import models
+from apps.empresa.cargo.models import cargo  # Ajusta la ruta según la ubicación real del modelo cargo
 
-# Create your models here.
 class persona(models.Model):
     OPCIONES_ROL = [
         ('Invitado', 'Invitado'),
@@ -45,13 +46,13 @@ class persona(models.Model):
         blank=True,
         verbose_name="Teléfono de la persona"
     )
-    #cargo = models.ForeignKey(
-    #    'personas.cargo',  
-    #    null=True,
-    #    blank=True,
-    #    on_delete=models.SET_NULL,
-    #    verbose_name="Cargo que ocupa la persona"
-    #)
+    cargo = models.ForeignKey(
+        cargo,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Cargo que ocupa la persona"
+    )
     rol = models.CharField(
         max_length=20,
         choices=OPCIONES_ROL,

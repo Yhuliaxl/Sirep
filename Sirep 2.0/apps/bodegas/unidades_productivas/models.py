@@ -1,6 +1,8 @@
+# apps/inventario/unidades_productivas/models.py
 from django.db import models
+from apps.empresa.personas.models import persona
+from apps.empresa.sena_empresa.models import senaEmpresa
 
-# Create your models here.
 class unidadProductiva(models.Model):
     CENTRO = 'Centro'
     YAMBORO = 'Yamboro'
@@ -54,10 +56,23 @@ class unidadProductiva(models.Model):
         verbose_name="Entrega de producto",
         help_text="True = entregado; False = reservado"
     )
-    #fk_persona = models.BigIntegerField(
-    #    verbose_name="Persona encargada"
-    #)
+    fk_persona = models.ForeignKey(
+        persona,
+        on_delete=models.PROTECT,
+        verbose_name="Persona encargada",
+        blank=True,  # Permitimos que sea opcional
+        null=True
+    )
 
+    fk_sena_empresa = models.ForeignKey(
+        senaEmpresa,
+        on_delete=models.CASCADE,
+        verbose_name="Empresa SENA asociada",
+        related_name="unidades_productivas",
+        blank=True,
+        null=True
+    )
+    
     class Meta:
         db_table = 'unidades_productivas'
         verbose_name = 'Unidad Productiva'

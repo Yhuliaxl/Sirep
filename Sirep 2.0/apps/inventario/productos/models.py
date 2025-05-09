@@ -1,4 +1,6 @@
+# apps/inventario/productos/models.py
 from django.db import models
+from apps.bodegas.unidades_productivas.models import unidadProductiva
 
 class Producto(models.Model):
     ESTADO_CHOICES = [
@@ -29,8 +31,7 @@ class Producto(models.Model):
     hora_inicio = models.TimeField()
     hora_fin = models.TimeField()
     inventario = models.CharField(max_length=3, choices=INVENTARIO_CHOICES)
-    # fk_codigo_up = models.ForeignKey('unidades_productivas.UnidadProductiva', on_delete=models.CASCADE)
-    fk_codigo_up = models.IntegerField()  # Temporalmente como IntegerField
+    fk_codigo_up = models.ForeignKey(unidadProductiva,on_delete=models.CASCADE,verbose_name="Unidad Productiva asociada",related_name="productos")
 
     def __str__(self):
         return f"Producto {self.nombre} (Código: {self.codigo_pdto})"
@@ -38,4 +39,3 @@ class Producto(models.Model):
     class Meta:
         verbose_name = "Producto"
         verbose_name_plural = "Productos"
-# Create your models here.

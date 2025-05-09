@@ -12,9 +12,9 @@ class personaSerializer(serializers.ModelSerializer):
             'password',
             'direccion',
             'telefono',
-            #'cargo',
+            'cargo',
             'rol',
             'ficha',
             'estado',
         ]
-        read_only_fields = ['id_sena']
+        read_only_fields = ['identificacion']

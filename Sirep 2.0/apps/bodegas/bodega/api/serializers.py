@@ -1,7 +1,6 @@
-# apps.inventario.bodega.api.serializer.py
-
 from rest_framework import serializers
 from apps.bodegas.bodega.models import Bodega
+
 
 class BodegaSerializer(serializers.ModelSerializer):
     class Meta:
@@ -10,7 +9,7 @@ class BodegaSerializer(serializers.ModelSerializer):
             'id_bodega',
             'fecha',
             'cantidad',
-            #'fk_inventario',
-            #'fk_produccion',
+            'fk_inventario',
+            'fk_produccion',
         ]
         read_only_fields = ['id_bodega']
