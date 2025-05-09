@@ -1,6 +1,7 @@
 # apps/inventario/unidades_productivas/models.py
 from django.db import models
-from apps.empresa.personas.models import persona  # Ajusta la ruta según la ubicación real del modelo Persona
+from apps.empresa.personas.models import persona
+from apps.empresa.sena_empresa.models import senaEmpresa
 
 class unidadProductiva(models.Model):
     CENTRO = 'Centro'
@@ -63,6 +64,15 @@ class unidadProductiva(models.Model):
         null=True
     )
 
+    fk_sena_empresa = models.ForeignKey(
+        senaEmpresa,
+        on_delete=models.CASCADE,
+        verbose_name="Empresa SENA asociada",
+        related_name="unidades_productivas",
+        blank=True,
+        null=True
+    )
+    
     class Meta:
         db_table = 'unidades_productivas'
         verbose_name = 'Unidad Productiva'
