@@ -26,7 +26,6 @@ from apps.bodegas.unidades_productivas.api.router import unidadProductivaRouter
 
 # EMPRESA
 from apps.empresa.cargo.api.router import cargoRouter
-
 from apps.empresa.personas.api.router import personaRouter
 from apps.empresa.sena_empresa.api.router import senaEmpresaRouter
 
@@ -39,6 +38,9 @@ from apps.inventario.productos.api.router import productosRouter
 # MOVIMIENTO
 from apps.movimiento.detalle.api.router import detalleRouter
 from apps.movimiento.movimientos.api.router import movimientosRouter
+
+#SUPERETE
+
 
 # ROUTERS
 router = DefaultRouter()
@@ -73,7 +75,7 @@ urlpatterns = [
     path('bodega/', include(routerBodega.urls)),
     path('empresa/', include(routerEempresa.urls)),
     path('inventario/', include(routerInventario.urls)),
-    path('movimiento/', include(routerMovimiento.urls)),
+    path('movimiento/', include(routerMovimiento.urls)),  
     # Rutas para Simple JWT
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),

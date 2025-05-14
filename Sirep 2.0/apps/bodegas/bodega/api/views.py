@@ -1,5 +1,4 @@
 # apps.inventario.bodega.api.views.py
-
 from rest_framework.viewsets import ModelViewSet
 from apps.bodegas.bodega.models import Bodega
 from rest_framework.permissions import IsAuthenticated

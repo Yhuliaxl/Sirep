@@ -56,6 +56,12 @@ INSTALLED_APPS = [
     #movimientos
     'apps.movimiento.detalle',
     'apps.movimiento.movimientos',
+    #superete
+    'apps.superete.caja_diaria',
+    'apps.superete.categoria',
+    'apps.superete.detalleCaja',
+    'apps.superete.producto',
+    'apps.superete.transacciones',
 ]
 
 MIDDLEWARE = [
