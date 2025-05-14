@@ -8,6 +8,3 @@ class DetalleViewSet(ModelViewSet):
     queryset = Detalle.objects.all()
     serializer_class = DetalleSerializer
     permission_classes = [IsAuthenticated]
-
-
-    

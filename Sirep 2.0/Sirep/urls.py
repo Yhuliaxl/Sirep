@@ -40,6 +40,11 @@ from apps.movimiento.detalle.api.router import detalleRouter
 from apps.movimiento.movimientos.api.router import movimientosRouter
 
 #SUPERETE
+from apps.superete.caja_diaria.api.router import cajaDiariaRouter
+from apps.superete.categoria.api.router import categoriaRouter
+from apps.superete.detalleCaja.api.router import detalleCajaRouter
+from apps.superete.producto.api.router import productoRouter
+from apps.superete.transacciones.api.router import transaccionesRouter
 
 
 # ROUTERS
@@ -48,6 +53,7 @@ routerBodega = DefaultRouter()
 routerEempresa = DefaultRouter()
 routerInventario = DefaultRouter()
 routerMovimiento = DefaultRouter()
+routerSuperete = DefaultRouter()
 
 # ROUTERS BODEGA
 routerBodega.registry.extend(bodegaRouter.registry)
@@ -69,6 +75,13 @@ routerInventario.registry.extend(productosRouter.registry)
 routerMovimiento.registry.extend(detalleRouter.registry)
 routerMovimiento.registry.extend(movimientosRouter.registry)
 
+#ROUTER SUPERETE
+routerSuperete.registry.extend(cajaDiariaRouter.registry)
+routerSuperete.registry.extend(categoriaRouter.registry)
+routerSuperete.registry.extend(detalleCajaRouter.registry)
+routerSuperete.registry.extend(productoRouter.registry)
+routerSuperete.registry.extend(transaccionesRouter.registry)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
@@ -76,6 +89,7 @@ urlpatterns = [
     path('empresa/', include(routerEempresa.urls)),
     path('inventario/', include(routerInventario.urls)),
     path('movimiento/', include(routerMovimiento.urls)),  
+    path('superete/', include(routerSuperete.urls)),
     # Rutas para Simple JWT
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),

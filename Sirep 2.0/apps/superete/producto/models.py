@@ -1,7 +1,6 @@
 from django.db import models
 
 # Create your models here.
-
 class Productos(models.Model):
     nombre = models.CharField(max_length=100)
     # categoria_id = models.ForeignKey(Categoria, on_delete=SET_NULL, null=True)
