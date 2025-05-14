@@ -43,6 +43,9 @@ from apps.inventario.productos.api.router import productosRouter
 from apps.movimiento.detalle.api.router import detalleRouter
 from apps.movimiento.movimientos.api.router import movimientosRouter
 
+#SUPERETE
+
+
 #ROUTERS
 router = DefaultRouter()
 routerBodega = DefaultRouter()
