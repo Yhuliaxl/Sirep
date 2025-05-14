@@ -17,55 +17,55 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-#INVENTARIO
+# INVENTARIO
 from apps.bodegas.bodega.api.router import bodegaRouter
 from apps.bodegas.punto_venta.api.router import puntoVentaRouter
 from apps.bodegas.unidades_productivas.api.router import unidadProductivaRouter
 
-##EMPRESA
+# EMPRESA
 from apps.empresa.cargo.api.router import cargoRouter
-
 from apps.empresa.personas.api.router import personaRouter
 from apps.empresa.sena_empresa.api.router import senaEmpresaRouter
-#
-##INVENTARIO
+
+# INVENTARIO
 from apps.inventario.inventario.api.router import inventarioRouter
 from apps.inventario.precios.api.router import preciosRouter
 from apps.inventario.produccion.api.router import produccionRouter
 from apps.inventario.productos.api.router import productosRouter
-#
-##MOVIMIENTO
+
+# MOVIMIENTO
 from apps.movimiento.detalle.api.router import detalleRouter
 from apps.movimiento.movimientos.api.router import movimientosRouter
 
 #SUPERETE
 
 
-#ROUTERS
+# ROUTERS
 router = DefaultRouter()
 routerBodega = DefaultRouter()
 routerEempresa = DefaultRouter()
 routerInventario = DefaultRouter()
 routerMovimiento = DefaultRouter()
-#
-##ROUTERS BODEGA
+
+# ROUTERS BODEGA
 routerBodega.registry.extend(bodegaRouter.registry)
 routerBodega.registry.extend(puntoVentaRouter.registry)
 routerBodega.registry.extend(unidadProductivaRouter.registry)
-#
-##ROUTERS EMPRESA
+
+# ROUTERS EMPRESA
 routerEempresa.registry.extend(cargoRouter.registry)
 routerEempresa.registry.extend(personaRouter.registry)
 routerEempresa.registry.extend(senaEmpresaRouter.registry)
-#
-##ROUTERS INVENTARIO
+
+# ROUTERS INVENTARIO
 routerInventario.registry.extend(inventarioRouter.registry)
 routerInventario.registry.extend(preciosRouter.registry)
 routerInventario.registry.extend(produccionRouter.registry)
 routerInventario.registry.extend(productosRouter.registry)
-#
-##ROUTERS MOVIMIENTOS
+
+# ROUTERS MOVIMIENTOS
 routerMovimiento.registry.extend(detalleRouter.registry)
 routerMovimiento.registry.extend(movimientosRouter.registry)
 
@@ -75,6 +75,8 @@ urlpatterns = [
     path('bodega/', include(routerBodega.urls)),
     path('empresa/', include(routerEempresa.urls)),
     path('inventario/', include(routerInventario.urls)),
-    path('movimiento/', include(routerMovimiento.urls)),
-    
+    path('movimiento/', include(routerMovimiento.urls)),  
+    # Rutas para Simple JWT
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
