@@ -42,7 +42,7 @@ from apps.movimiento.movimientos.api.router import movimientosRouter
 #SUPERETE
 from apps.superete.caja_diaria.api.router import cajaDiariaRouter
 from apps.superete.categoria.api.router import categoriaRouter
-from apps.superete.detalleCaja.api.router import detalleCajaRouter
+from apps.superete.detalle_caja.api.router import detalleCajaRouter
 from apps.superete.producto.api.router import productoRouter
 from apps.superete.transacciones.api.router import transaccionesRouter
 

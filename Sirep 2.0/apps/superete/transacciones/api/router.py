@@ -1,5 +1,5 @@
 from rest_framework.routers import DefaultRouter
 from .views import TransaccionesViewSet
 
-TransaccionesRouter = DefaultRouter()
-TransaccionesRouter.register(r'transacciones', TransaccionesViewSet)
+transaccionesRouter = DefaultRouter()
+transaccionesRouter.register(r'transacciones', TransaccionesViewSet)

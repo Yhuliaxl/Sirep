@@ -59,7 +59,7 @@ INSTALLED_APPS = [
     #superete
     'apps.superete.caja_diaria',
     'apps.superete.categoria',
-    'apps.superete.detalleCaja',
+    'apps.superete.detalle_caja',
     'apps.superete.producto',
     'apps.superete.transacciones',
 ]
