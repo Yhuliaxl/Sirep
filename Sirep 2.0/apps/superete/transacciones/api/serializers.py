@@ -1,10 +1,14 @@
 from rest_framework import serializers
-from apps.superete.transacciones.models import Transacciones
+from apps.superete.transacciones.models import Transaccion
 
 class TransaccionesSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Transacciones
+        model = Transaccion
         fields = [
-            'id', 'caja_id', 'tipo', 'monto', 'descripcion',
-            'fecha', 'creado', 'actualizado'
+            'tipo',
+            'producto_id',
+            'cantidad',
+            'precio_unitario',
+            'fecha',
+            'persona_id',
         ]

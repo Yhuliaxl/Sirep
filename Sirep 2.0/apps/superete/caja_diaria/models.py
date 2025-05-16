@@ -1,4 +1,5 @@
 from django.db import models
+from apps.empresa.personas.models import persona
 
 # Create your models here.
 class CajaDiaria(models.Model):
@@ -7,10 +8,10 @@ class CajaDiaria(models.Model):
     fecha_cierre = models.DateTimeField(null=True, blank=True)
     saldo_inicial = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     saldo_final = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
-    # abierta_por = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='cajas_abiertas')
-    abierta_por = models.IntegerField(null=True, blank=True)  # Campo temporal reemplazando ForeignKey
-    # cerrada_por = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='cajas_cerradas')
-    cerrada_por = models.IntegerField(null=True, blank=True)  # Campo temporal reemplazando ForeignKey
+    abierta_por = models.ForeignKey(persona, on_delete=models.SET_NULL, null=True, related_name='cajas_abiertas')
+    #abierta_por = models.IntegerField(null=True, blank=True)  # Campo temporal reemplazando ForeignKey
+    cerrada_por = models.ForeignKey(persona, on_delete=models.SET_NULL, null=True, blank=True, related_name='cajas_cerradas')
+    #cerrada_por = models.IntegerField(null=True, blank=True)  # Campo temporal reemplazando ForeignKey
     observaciones = models.TextField(blank=True)
 
     class Meta:
