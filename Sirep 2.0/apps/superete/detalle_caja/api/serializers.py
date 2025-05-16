@@ -6,8 +6,8 @@ class DetalleCajaSerializer(serializers.ModelSerializer):
         model = DetalleCaja
         fields = [
             'id',
-            'caja_id',
-            'transaccion_id',
+            'fk_caja_id',
+            'fk_transaccion_id',
             'descripcion',
             'tipo',
             'monto',
