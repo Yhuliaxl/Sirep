@@ -51,17 +51,17 @@ INSTALLED_APPS = [
     #inventario
     'apps.inventario.inventario',
     'apps.inventario.precios',
-    'apps.inventario.produccion',
+    #'apps.inventario.produccion',
     'apps.inventario.productos',
     #movimientos
     'apps.movimiento.detalle',
     'apps.movimiento.movimientos',
     #superete
-    'apps.superete.caja_diaria',
+    #'apps.superete.caja_diaria',
     'apps.superete.categoria',
-    'apps.superete.detalle_caja',
-    'apps.superete.producto',
-    'apps.superete.transacciones',
+    #'apps.superete.detalle_caja',
+    #'apps.superete.producto',
+    #'apps.superete.transacciones',
 ]
 
 MIDDLEWARE = [
