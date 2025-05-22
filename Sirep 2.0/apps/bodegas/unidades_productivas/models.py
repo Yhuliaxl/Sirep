@@ -38,13 +38,6 @@ class unidadProductiva(models.Model):
         blank=True,
         verbose_name="Descripción corta de la unidad productiva"
     )
-    sede = models.CharField(
-        max_length=10,
-        choices=SEDE_CHOICES,
-        null=True,
-        blank=True,
-        verbose_name="Sede"
-    )
     estado = models.CharField(
         max_length=8,
         choices=ESTADO_CHOICES,
@@ -52,10 +45,10 @@ class unidadProductiva(models.Model):
         blank=True,
         verbose_name="Estado"
     )
-    entrega_producto = models.BooleanField(
-        verbose_name="Entrega de producto",
-        help_text="True = entregado; False = reservado"
-    )
+    #entrega_producto = models.BooleanField(
+    #    verbose_name="Entrega de producto",
+    #    help_text="True = entregado; False = reservado"
+    #)
     fk_persona = models.ForeignKey(
         persona,
         on_delete=models.PROTECT,
@@ -64,14 +57,14 @@ class unidadProductiva(models.Model):
         null=True
     )
 
-    fk_sena_empresa = models.ForeignKey(
-        senaEmpresa,
-        on_delete=models.CASCADE,
-        verbose_name="Empresa SENA asociada",
-        related_name="unidades_productivas",
-        blank=True,
-        null=True
-    )
+    #fk_sena_empresa = models.ForeignKey(
+    #    senaEmpresa,
+    #    on_delete=models.CASCADE,
+    #    verbose_name="Empresa SENA asociada",
+    #    related_name="unidades_productivas",
+    #    blank=True,
+    #    null=True
+    #)
     
     class Meta:
         db_table = 'unidades_productivas'

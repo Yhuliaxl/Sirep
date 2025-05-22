@@ -1,5 +1,6 @@
 from django.db import models
 from apps.superete.categoria.models import Categoria
+from apps.bodegas.unidades_productivas.models import unidadProductiva
 
 class Producto(models.Model):
     ESTADO_CHOICES = [
@@ -8,7 +9,7 @@ class Producto(models.Model):
     ]
 
     TIPO_CHOICES = [
-        ('Venta', 'Venta'),
+        ('Venta', 'Venta'), 
         ('Servicio', 'Servicio'),
     ]
 
@@ -72,7 +73,13 @@ class Producto(models.Model):
         blank=True,
         verbose_name="Categoría asociada"
     )
-
+    fk_unidad_productiva = models.ForeignKey(
+        unidadProductiva,
+        on_delete=models.CASCADE,
+        verbose_name="Unidad productiva asociada",
+        blank=True,
+        null=True
+    )
     class Meta:
         db_table = 'producto'
         verbose_name = 'Producto'
