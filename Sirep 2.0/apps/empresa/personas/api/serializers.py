@@ -22,7 +22,6 @@ class personaSerializer(serializers.ModelSerializer):
             'direccion',
             'telefono',
             'cargo',
-            'rol',
             'ficha',
             'estado',
             'cargo_data',

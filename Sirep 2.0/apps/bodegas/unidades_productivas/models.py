@@ -4,12 +4,6 @@ from apps.empresa.personas.models import persona
 from apps.empresa.sena_empresa.models import senaEmpresa
 
 class unidadProductiva(models.Model):
-    CENTRO = 'Centro'
-    YAMBORO = 'Yamboro'
-    SEDE_CHOICES = [
-        (CENTRO, 'Centro'),
-        (YAMBORO, 'Yamboro'),
-    ]
 
     ACTIVO = 'Activo'
     INACTIVO = 'Inactivo'
