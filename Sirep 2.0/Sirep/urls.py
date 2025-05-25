@@ -32,7 +32,7 @@ from apps.empresa.sena_empresa.api.router import senaEmpresaRouter
 # INVENTARIO
 from apps.inventario.inventario.api.router import inventarioRouter
 from apps.inventario.precios.api.router import preciosRouter
-from apps.inventario.produccion.api.router import produccionRouter
+#from apps.inventario.produccion.api.router import produccionRouter
 from apps.inventario.productos.api.router import productosRouter
 
 # MOVIMIENTO
@@ -40,11 +40,11 @@ from apps.movimiento.detalle.api.router import detalleRouter
 from apps.movimiento.movimientos.api.router import movimientosRouter
 
 #SUPERETE
-from apps.superete.caja_diaria.api.router import cajaDiariaRouter
+##from apps.superete.caja_diaria.api.router import cajaDiariaRouter
 from apps.superete.categoria.api.router import categoriaRouter
-from apps.superete.detalle_caja.api.router import detalleCajaRouter
-from apps.superete.producto.api.router import productoRouter
-from apps.superete.transacciones.api.router import transaccionesRouter
+#from apps.superete.detalle_caja.api.router import detalleCajaRouter
+#from apps.superete.producto.api.router import productoRouter
+#from apps.superete.transacciones.api.router import transaccionesRouter
 
 
 # ROUTERS
@@ -68,7 +68,7 @@ routerEempresa.registry.extend(senaEmpresaRouter.registry)
 # ROUTERS INVENTARIO
 routerInventario.registry.extend(inventarioRouter.registry)
 routerInventario.registry.extend(preciosRouter.registry)
-routerInventario.registry.extend(produccionRouter.registry)
+#routerInventario.registry.extend(produccionRouter.registry)
 routerInventario.registry.extend(productosRouter.registry)
 
 # ROUTERS MOVIMIENTOS
@@ -76,11 +76,11 @@ routerMovimiento.registry.extend(detalleRouter.registry)
 routerMovimiento.registry.extend(movimientosRouter.registry)
 
 #ROUTER SUPERETE
-routerSuperete.registry.extend(cajaDiariaRouter.registry)
+#routerSuperete.registry.extend(cajaDiariaRouter.registry)
 routerSuperete.registry.extend(categoriaRouter.registry)
-routerSuperete.registry.extend(detalleCajaRouter.registry)
-routerSuperete.registry.extend(productoRouter.registry)
-routerSuperete.registry.extend(transaccionesRouter.registry)
+#routerSuperete.registry.extend(detalleCajaRouter.registry)
+#routerSuperete.registry.extend(productoRouter.registry)
+#routerSuperete.registry.extend(transaccionesRouter.registry)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

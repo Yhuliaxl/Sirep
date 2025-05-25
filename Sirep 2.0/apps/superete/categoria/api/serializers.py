@@ -5,5 +5,5 @@ class CategoriaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Categoria
         fields = [
-            'id', 'nombre', 'descripcion', 'creado', 'actualizado'
+            'id', 'nombre', 'descripcion', 'creado'
         ]

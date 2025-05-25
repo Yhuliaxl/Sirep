@@ -1,5 +1,5 @@
-# apps/inventario/productos/models.py
 from django.db import models
+from apps.superete.categoria.models import Categoria
 from apps.bodegas.unidades_productivas.models import unidadProductiva
 
 class Producto(models.Model):
@@ -7,35 +7,83 @@ class Producto(models.Model):
         ('Activo', 'Activo'),
         ('Inactivo', 'Inactivo'),
     ]
-    RESERVA_CHOICES = [
-        ('Si', 'Si'),
-        ('No', 'No'),
-    ]
+
     TIPO_CHOICES = [
-        ('Venta', 'Venta'),
+        ('Venta', 'Venta'), 
         ('Servicio', 'Servicio'),
     ]
-    INVENTARIO_CHOICES = [
-        ('Si', 'Si'),
-        ('No', 'No'),
-    ]
 
-    codigo_pdto = models.AutoField(primary_key=True)
-    nombre = models.CharField(max_length=50)
-    descripcion = models.CharField(max_length=80, blank=True, null=True)
-    imagen = models.CharField(max_length=80, blank=True, null=True)
-    estado = models.CharField(max_length=10, choices=ESTADO_CHOICES, blank=True, null=True)
-    reserva = models.CharField(max_length=3, choices=RESERVA_CHOICES, blank=True, null=True)
-    max_reserva = models.IntegerField()
-    tipo = models.CharField(max_length=10, choices=TIPO_CHOICES, blank=True, null=True)
-    hora_inicio = models.TimeField()
-    hora_fin = models.TimeField()
-    inventario = models.CharField(max_length=3, choices=INVENTARIO_CHOICES)
-    fk_codigo_up = models.ForeignKey(unidadProductiva,on_delete=models.CASCADE,verbose_name="Unidad Productiva asociada",related_name="productos")
+    codigo_pdto = models.AutoField(
+        primary_key=True,
+        verbose_name="Código del producto"
+    )
+    nombre = models.CharField(
+        max_length=100,
+        verbose_name="Nombre"
+    )
+    descripcion = models.CharField(
+        max_length=80,
+        blank=True,
+        null=True,
+        verbose_name="Descripción"
+    )
+    imagen = models.CharField(
+        max_length=80,
+        blank=True,
+        null=True,
+        verbose_name="Imagen"
+    )
+    estado = models.CharField(
+        max_length=10,
+        choices=ESTADO_CHOICES,
+        blank=True,
+        null=True,
+        verbose_name="Estado"
+    )
+
+    tipo = models.CharField(
+        max_length=10,
+        choices=TIPO_CHOICES,
+        blank=True,
+        null=True,
+        verbose_name="Tipo"
+    )
+
+    precio_compra = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        default=0,
+        verbose_name="Precio de compra"
+    )
+    precio_venta = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        default=0,
+        verbose_name="Precio de venta"
+    )
+    stock = models.PositiveIntegerField(
+        default=0,
+        verbose_name="Stock"
+    )
+
+    categoria = models.ForeignKey(
+        Categoria,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name="Categoría asociada"
+    )
+    fk_unidad_productiva = models.ForeignKey(
+        unidadProductiva,
+        on_delete=models.CASCADE,
+        verbose_name="Unidad productiva asociada",
+        blank=True,
+        null=True
+    )
+    class Meta:
+        db_table = 'producto'
+        verbose_name = 'Producto'
+        verbose_name_plural = 'Productos'
 
     def __str__(self):
-        return f"Producto {self.nombre} (Código: {self.codigo_pdto})"
-
-    class Meta:
-        verbose_name = "Producto"
-        verbose_name_plural = "Productos"
+        return self.nombre

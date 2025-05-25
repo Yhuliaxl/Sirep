@@ -3,14 +3,6 @@ from django.db import models
 from apps.empresa.cargo.models import cargo  # Ajusta la ruta según la ubicación real del modelo cargo
 
 class persona(models.Model):
-    OPCIONES_ROL = [
-        ('Invitado', 'Invitado'),
-        ('Vocero', 'Vocero'),
-        ('Lider UP', 'Lider UP'),
-        ('Punto venta', 'Punto venta'),
-        ('Admin', 'Admin'),
-        ('Aprendiz', 'Aprendiz'),
-    ]
 
     identificacion = models.BigAutoField(
         primary_key=True,
@@ -52,13 +44,6 @@ class persona(models.Model):
         blank=True,
         on_delete=models.SET_NULL,
         verbose_name="Cargo que ocupa la persona"
-    )
-    rol = models.CharField(
-        max_length=20,
-        choices=OPCIONES_ROL,
-        null=True,
-        blank=True,
-        verbose_name="Rol que desempeña la persona en la plataforma"
     )
     ficha = models.IntegerField(
         null=True,

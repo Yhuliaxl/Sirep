@@ -1,6 +1,6 @@
 from django.db import models
 from apps.inventario.inventario.models import Inventario
-from apps.inventario.produccion.models import Produccion
+from apps.movimiento.detalle.models import DetalleProduccion
 
 class Bodega(models.Model):
     id_bodega = models.AutoField(
@@ -21,14 +21,14 @@ class Bodega(models.Model):
         Inventario,
         on_delete=models.PROTECT,
         verbose_name="Inventario asociado",
-        blank=True,  # Permitimos que sea opcional
+        blank=True,
         null=True
     )
-    fk_produccion = models.ForeignKey(
-        Produccion,
+    fk_detalle_produccion = models.ForeignKey(  # Renombrado de fk_produccion a fk_detalle_produccion
+        DetalleProduccion,
         on_delete=models.PROTECT,
         verbose_name="Producción asociada",
-        blank=True,  # Permitimos que sea opcional
+        blank=True,
         null=True
     )
 
@@ -39,4 +39,3 @@ class Bodega(models.Model):
 
     def __str__(self):
         return f'Bodega {self.id_bodega}'
-    

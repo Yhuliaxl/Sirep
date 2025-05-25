@@ -1,30 +1,63 @@
-# apps/inventario/movimientos/models.py
 from django.db import models
 from apps.empresa.personas.models import persona
+from apps.inventario.productos.models import Producto
 
 class Movimiento(models.Model):
-    ESTADO_CHOICES = [
-        ('Reservado', 'Reservado'),
-        ('Facturado', 'Facturado'),
-        ('Anulado', 'Anulado'),
-        ('Prestamo', 'Prestamo'),
-    ]
-    TIPO_CHOICES = [
-        ('Grupal', 'Grupal'),
-        ('Individual', 'Individual'),
+    TIPO_MOVIMIENTO_CHOICES = [
+        ('Venta', 'Venta'),
+        ('Compra', 'Compra'),
+        ('Devolucion', 'Devolucion'),
+        ('Ajuste', 'Ajuste'),
     ]
 
-    id_movimiento = models.AutoField(primary_key=True)
-    estado = models.CharField(max_length=20, choices=ESTADO_CHOICES, blank=True, null=True)
-    fecha = models.DateField(blank=True, null=True)
-    fk_persona = models.ForeignKey(persona,on_delete=models.CASCADE,verbose_name="Persona asociada",related_name="movimientos" )
-    tipo = models.CharField(max_length=20, choices=TIPO_CHOICES, blank=True, null=True)
-    num_factura = models.IntegerField(blank=True, null=True)
-
-    def __str__(self):
-        persona_nombre = self.fk_persona.nombre if self.fk_persona else "Sin persona"
-        return f"Movimiento {self.id_movimiento} - Persona {persona_nombre}"
+    id_movimiento = models.AutoField(
+        primary_key=True,
+        verbose_name="Identificador único"
+    )
+    tipo_movimiento = models.CharField(
+        max_length=20,
+        choices=TIPO_MOVIMIENTO_CHOICES,
+        default='Reservado',
+        verbose_name="Tipo de movimiento"
+    )
+    cantidad = models.IntegerField(
+        default=0,
+        verbose_name="Cantidad"
+    )
+    precio_unitario = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        default=0,
+        verbose_name="Precio unitario"
+    )
+    fecha = models.DateField(
+        null=True,
+        verbose_name="Fecha"
+    )
+    num_factura = models.IntegerField(
+        null=True,
+        blank=True,
+        verbose_name="Número de factura"
+    )
+    fk_persona = models.ForeignKey(
+        persona,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name="Persona asociada"
+    )
+    fk_producto = models.ForeignKey(
+        Producto,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name="Producto asociado"
+    )
 
     class Meta:
-        verbose_name = "Movimiento"
-        verbose_name_plural = "Movimientos"
+        db_table = 'movimiento_transaccion'
+        verbose_name = 'Movimiento Transacción'
+        verbose_name_plural = 'Movimientos Transacciones'
+
+    def __str__(self):
+        return f"Movimiento {self.id_movimiento} - {self.tipo_movimiento}"
